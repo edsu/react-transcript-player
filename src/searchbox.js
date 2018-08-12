@@ -1,11 +1,12 @@
 'use strict'
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class SearchBox extends React.Component {
   static propTypes =
-    { onQuery: React.PropTypes.func.isRequired
-    , query: React.PropTypes.string
+    { onQuery: PropTypes.func.isRequired
+    , query: PropTypes.string
     };
   static defaultProps = { query: '' };
   constructor(props) {
@@ -35,7 +36,7 @@ class SearchBox extends React.Component {
           onClick={this.handleClearClick}
           style={{visibility: this.props.query ? 'visible' : 'hidden'}}
         >
-          <i className="fa fa-times-circle fa-lg"></i>
+          <i className="fa fa-times-circle fa-lg" />
         </button>
       </div>
     )

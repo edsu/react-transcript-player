@@ -1,11 +1,12 @@
 'use strict'
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class SearchResults extends React.Component {
   static propTypes =
-    { count: React.PropTypes.number.isRequired
-    , onNavigateResult: React.PropTypes.func.isRequired
+    { count: PropTypes.number.isRequired
+    , onNavigateResult: PropTypes.func.isRequired
     };
   constructor(props) {
     super(props)
@@ -27,13 +28,13 @@ class SearchResults extends React.Component {
             className="left btn border-right"
             onClick={this.handleBackwardClick}
           >
-            <i className="fa fa-chevron-left"></i>
+            <i className="fa fa-chevron-left" />
           </button>
           <button
             className="right btn"
             onClick={this.handleForwardClick}
           >
-            <i className="fa fa-chevron-right"></i>
+            <i className="fa fa-chevron-right" />
           </button>
         </div>
       </div>

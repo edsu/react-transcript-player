@@ -1,6 +1,7 @@
 'use strict'
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Map} from 'immutable'
 import AudioPlayer from './audio'
 import SearchBox from './searchbox'
@@ -12,16 +13,16 @@ const MIN_QUERY_LEN = 3
 
 class TranscriptPlayer extends React.Component {
   static propTypes =
-    { onPause: React.PropTypes.func
-    , onPlaying: React.PropTypes.func
-    , onTimeUpdate: React.PropTypes.func
-    , play: React.PropTypes.bool
-    , seekTime: React.PropTypes.number
-    , transcript: React.PropTypes.shape(
-        { id: React.PropTypes.string
-        , media: React.PropTypes.string
-        , speakers: React.PropTypes.arrayOf(React.PropTypes.string)
-        , turns: React.PropTypes.arrayOf(React.PropTypes.object)
+    { onPause: PropTypes.func
+    , onPlaying: PropTypes.func
+    , onTimeUpdate: PropTypes.func
+    , play: PropTypes.bool
+    , seekTime: PropTypes.number
+    , transcript: PropTypes.shape(
+        { id: PropTypes.string
+        , media: PropTypes.string
+        , speakers: PropTypes.arrayOf(PropTypes.string)
+        , turns: PropTypes.arrayOf(PropTypes.object)
         }).isRequired
     };
   static defaultProps = {play: null, seekTime: null};
@@ -157,4 +158,5 @@ class TranscriptPlayer extends React.Component {
     )
   }
 }
+
 export default TranscriptPlayer

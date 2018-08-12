@@ -182,7 +182,7 @@ class Functified {
 
   static range(start=0, stop=undefined, step=1) {
     return Functified.fromGenerator(function* () {
-      const notYet = (step >= 0) ? x => (x < stop) : x => (x > stop)
+      const notYet = (step >= 0) ? (x => (x < stop)) : (x => (x > stop))
       let i = start
       while (stop === undefined || notYet(i)) {
         yield i

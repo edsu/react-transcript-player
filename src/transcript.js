@@ -1,6 +1,7 @@
 'use strict'
 
 import React from 'react'
+import PropTypes from 'prop-types'
 import {Map, List} from 'immutable'
 import TurnView from './transcript-turn'
 import functify from './functify'
@@ -8,11 +9,11 @@ import {progress, debounce} from './utils'
 
 class TranscriptView extends React.Component {
   static propTypes =
-    { highlights: React.PropTypes.instanceOf(Map)
-    , onSeekRequest: React.PropTypes.func.isRequired
-    , speakers: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
-    , time: React.PropTypes.number.isRequired
-    , turns: React.PropTypes.arrayOf(React.PropTypes.object).isRequired
+    { highlights: PropTypes.instanceOf(Map)
+    , onSeekRequest: PropTypes.func.isRequired
+    , speakers: PropTypes.arrayOf(PropTypes.string).isRequired
+    , time: PropTypes.number.isRequired
+    , turns: PropTypes.arrayOf(PropTypes.object).isRequired
     };
   static defaultProps =
     { highlights: Map()

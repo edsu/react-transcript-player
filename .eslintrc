@@ -6,19 +6,6 @@
     "node": true,
     "browser": true
   },
-  "ecmaFeatures": {
-    "arrowFunctions": true,
-    "blockBindings": true,
-    "classes": true,
-    "defaultParams": true,
-    "destructuring": true,
-    "forOf": true,
-    "generators": true,
-    "jsx": true,
-    "modules": true,
-    "spread": true,
-    "templateStrings": true
-  },
   "extends": "eslint:recommended",
   "rules": {
     "comma-dangle": 0,
@@ -30,7 +17,7 @@
     "no-multiple-empty-lines": [2, {"max": 1}],
     "no-trailing-spaces": [2],
     "no-use-before-define": [2, "nofunc"],
-    "react/display-name": [2, {"acceptTranspilerName": true}],
+    "react/display-name": 2,
     "react/forbid-prop-types": 2,
     "react/jsx-boolean-value": 2,
     "react/jsx-closing-bracket-location": 2,
@@ -40,7 +27,7 @@
     "react/jsx-no-bind": 2,
     "react/jsx-no-duplicate-props": 2,
     "react/jsx-no-undef": 2,
-    "react/jsx-sort-prop-types": 2,
+    "react/sort-prop-types": 2,
     "react/jsx-sort-props": 2,
     "react/jsx-uses-react": 2,
     "react/jsx-uses-vars": 2,
@@ -53,10 +40,8 @@
     "react/prefer-es6-class": 2,
     "react/prop-types": 2,
     "react/react-in-jsx-scope": 2,
-    "react/require-extension": 2,
     "react/self-closing-comp": 2,
     "react/sort-comp": 2,
-    "react/wrap-multilines": 2,
     "semi": [2, "never"]
   }
 }

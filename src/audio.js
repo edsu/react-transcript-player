@@ -1,16 +1,17 @@
 'use strict'
 
 import React from 'react'
+import PropTypes from 'prop-types'
 
 class AudioPlayer extends React.Component {
   static propTypes =
-    { media: React.PropTypes.string.isRequired
-    , onEnded: React.PropTypes.func.isRequired
-    , onPause: React.PropTypes.func.isRequired
-    , onPlaying: React.PropTypes.func.isRequired
-    , onTimeUpdate: React.PropTypes.func.isRequired
-    , play: React.PropTypes.bool
-    , seekTime: React.PropTypes.number
+    { media: PropTypes.string.isRequired
+    , onEnded: PropTypes.func.isRequired
+    , onPause: PropTypes.func.isRequired
+    , onPlaying: PropTypes.func.isRequired
+    , onTimeUpdate: PropTypes.func.isRequired
+    , play: PropTypes.bool
+    , seekTime: PropTypes.number
     };
   static defaultProps = {play: false, seekTime: null};
   constructor(props) {
@@ -19,6 +20,7 @@ class AudioPlayer extends React.Component {
     this.handlePause = this.handlePause.bind(this)
     this.handlePlaying = this.handlePlaying.bind(this)
     this.handleEnded = this.handleEnded.bind(this)
+    this.audioRef = React.createRef()
   }
   componentDidMount() {
     this.seek()
@@ -34,7 +36,7 @@ class AudioPlayer extends React.Component {
     this.seek()
   }
   handleTimeUpdate() {
-    this.props.onTimeUpdate(this.refs.audio.currentTime)
+    this.props.onTimeUpdate(this.audioRef.current.currentTime)
   }
   handlePause() {
     this.props.onPause()
@@ -47,15 +49,15 @@ class AudioPlayer extends React.Component {
   }
   seek() {
     if (this.props.seekTime !== null) {
-      this.refs.audio.currentTime = this.props.seekTime
+      this.audioRef.current.currentTime = this.props.seekTime
     }
     if (this.props.play) {
-      if (this.refs.audio.paused) {
-        this.refs.audio.play()
+      if (this.audioRef.current.paused) {
+        this.audioRef.current.play()
       }
     } else {
-      if (! (this.refs.audio.paused || this.refs.audio.ended)) {
-        this.refs.audio.pause()
+      if (! (this.audioRef.current.paused || this.audioRef.current.ended)) {
+        this.audioRef.current.pause()
       }
     }
   }
@@ -69,10 +71,10 @@ class AudioPlayer extends React.Component {
           onPause={this.handlePause}
           onPlaying={this.handlePlaying}
           onTimeUpdate={this.handleTimeUpdate}
-          ref="audio"
+          ref={this.audioRef}
           src={this.props.media}
           style={{width: '100%'}}
-        ></audio>
+        />
       </div>
     )
   }

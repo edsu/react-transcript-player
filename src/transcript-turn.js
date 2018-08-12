@@ -2,6 +2,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
+import PropTypes from 'prop-types'
 import {Map, List} from 'immutable'
 import SpeechView from './transcript-speech'
 import functify from './functify'
@@ -9,19 +10,19 @@ import {progress} from './utils'
 
 class TurnView extends React.Component {
   static propTypes =
-    { highlights: React.PropTypes.instanceOf(List)
-    , index: React.PropTypes.number.isRequired
-    , onMounted: React.PropTypes.func.isRequired
-    , onSpeechClick: React.PropTypes.func.isRequired
-    , progress: React.PropTypes.string
-    , sentences: React.PropTypes.arrayOf(React.PropTypes.string).isRequired
-    , speaker: React.PropTypes.string.isRequired
-    , speech: React.PropTypes.arrayOf(React.PropTypes.shape(
-        { text: React.PropTypes.string
-        , start: React.PropTypes.number
-        , end: React.PropTypes.number
+    { highlights: PropTypes.instanceOf(List)
+    , index: PropTypes.number.isRequired
+    , onMounted: PropTypes.func.isRequired
+    , onSpeechClick: PropTypes.func.isRequired
+    , progress: PropTypes.string
+    , sentences: PropTypes.arrayOf(PropTypes.string).isRequired
+    , speaker: PropTypes.string.isRequired
+    , speech: PropTypes.arrayOf(PropTypes.shape(
+        { text: PropTypes.string
+        , start: PropTypes.number
+        , end: PropTypes.number
         })).isRequired
-    , time: React.PropTypes.number.isRequired
+    , time: PropTypes.number.isRequired
     };
   static defaultProps =
     { highlights: List()
@@ -29,6 +30,7 @@ class TurnView extends React.Component {
     };
   constructor(props) {
     super(props)
+    this.speechRef = React.createRef()
   }
   componentDidMount() {
     const el = ReactDOM.findDOMNode(this)
@@ -40,7 +42,7 @@ class TurnView extends React.Component {
       status = 'ok'
       end = this.props.speech.slice(-1)[0].end
     } else {
-      let nodes = this.refs.speech.getElementsByClassName('speech')
+      let nodes = this.speechRef.current.getElementsByClassName('speech')
         , i = nodes.length - 1
       for (; i >= 0; i--) {
         nodes.item(i).style.display = 'none'
@@ -88,7 +90,7 @@ class TurnView extends React.Component {
         <span className="bold mr1">{this.props.speaker}</span>
         <div
           className="inline"
-          ref="speech"
+          ref={this.speechRef}
         >{speechViews}</div>
       </div>
     )

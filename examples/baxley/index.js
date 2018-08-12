@@ -2,7 +2,7 @@
 
 var React = require('react')
   , ReactDOM = require('react-dom')
-  , TranscriptPlayer = require('react-transcript-player').default
+  , TranscriptPlayer = require('../../src/player').default
   , transcript = require('./media/baxley/transcript.json')
 
 ReactDOM.render(
